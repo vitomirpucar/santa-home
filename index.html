@@ -780,6 +780,20 @@
             scene.add(snowflake);
         }
 
+        // Smoke
+        const smokeParticles=[];
+        const smokeGeometry=new THREE.SphereGeometry(0.3,8,8);
+        const smokeMaterial=new THREE.MeshBasicMaterial({color:0xaaaaaa,transparent:true,opacity:0.4,depthWrite:false});
+        function createSmoke(){
+            const particle=new THREE.Mesh(smokeGeometry,smokeMaterial.clone());
+            particle.position.set(2+(Math.random()-0.5)*0.4,9.2,2+(Math.random()-0.5)*0.4);
+            particle.velocity={x:(Math.random()-0.5)*0.02,y:0.03+Math.random()*0.03,z:(Math.random()-0.5)*0.02};
+            particle.life=1.0;
+            scene.add(particle);
+            smokeParticles.push(particle);
+        }
+        let smokeTimer=0;
+        
         // Fireworks system
         const fireworks = [];
         
@@ -905,6 +919,22 @@
             requestAnimationFrame(animate);
             time += 0.05;
 
+            //Smoke animate
+            smokeTimer++;
+            if(smokeTimer>12){createSmoke();smokeTimer=0;}
+            smokeParticles.forEach((p,i)=>{
+                p.position.x+=p.velocity.x;
+                p.position.y+=p.velocity.y;
+                p.position.z+=p.velocity.z;
+                p.velocity.x+=(Math.random()-0.5)*0.002;
+                p.velocity.z+=(Math.random()-0.5)*0.002;
+                p.velocity.y*=0.99;
+                p.life-=0.004;
+                p.material.opacity=p.life*0.4;
+                p.scale.setScalar(p.life*2);
+                if(p.life<=0){scene.remove(p);smokeParticles.splice(i,1);}
+            });
+            
             // Blink lights - much stronger effect
             allLights.forEach((light, index) => {
                 const offset = index * 0.5;
@@ -1050,4 +1080,5 @@
         });
     </script>
 </body>
+
 </html>
