@@ -50,10 +50,10 @@
         <p>💻 Levi klik = rotacija • Desni klik = fokus • Točkić = zoom • Razmak = vatromet</p>
         <p>📱 Jedan prst = rotacija • Dva prsta = zoom • Tap = vatromet</p>
         <button id="musicBtn1" style="margin-top: 8px; margin-right: 8px; padding: 6px 14px; background: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
-            🔇 Mel. 1
+            🔇 Mel.1
         </button>
         <button id="musicBtn2" style="margin-top: 8px; padding: 6px 14px; background: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
-            🔇 Mel. 2
+            🔇 Mel.2
         </button>
     </div>
     <div id="container"></div>
@@ -96,8 +96,8 @@
         function stopAllMusic() {
             bgMusic1.pause();
             bgMusic2.pause();
-            musicBtn1.textContent = '🔇 Pesma 1';
-            musicBtn2.textContent = '🔇 Pesma 2';
+            musicBtn1.textContent = '🔇 Mel.1';
+            musicBtn2.textContent = '🔇 Mel.2';
         }
 
         // Music 1 toggle
@@ -109,14 +109,14 @@
                 stopAllMusic();
                 bgMusic1.play().then(function() {
                     console.log('Pesma 1 ide!');
-                    musicBtn1.textContent = '🔊 Pesma 1';
+                    musicBtn1.textContent = '🔊 ♪ ♪♪';
                 }).catch(function(err) {
                     console.log('Greška:', err);
                     alert('Molim te klikni ponovo na dugme!');
                 });
             } else {
                 bgMusic1.pause();
-                musicBtn1.textContent = '🔇 Pesma 1';
+                musicBtn1.textContent = '🔇 Mel.1';
             }
         });
 
@@ -129,14 +129,14 @@
                 stopAllMusic();
                 bgMusic2.play().then(function() {
                     console.log('Pesma 2 ide!');
-                    musicBtn2.textContent = '🔊 Pesma 2';
+                    musicBtn2.textContent = '🔊 ♪♪ ♪';
                 }).catch(function(err) {
                     console.log('Greška:', err);
                     alert('Molim te klikni ponovo na dugme!');
                 });
             } else {
                 bgMusic2.pause();
-                musicBtn2.textContent = '🔇 Pesma 2';
+                musicBtn2.textContent = '🔇 Mel.2';
             }
         });
 
@@ -1082,6 +1082,7 @@
 </body>
 
 </html>
+
 
 
 
