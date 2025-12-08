@@ -49,33 +49,41 @@
         <h1>🎅 Santa's Home at the North Pole 🏠 by Vita</h1>
         <p>💻 Levi klik = rotacija • Desni klik = fokus • Točkić = zoom • Razmaknica = vatromet</p>
         <p>📱 Jedan prst = rotacija • Dva prsta = zoom • Tap = vatromet</p>
-        <button id="musicBtn" style="margin-top: 8px; padding: 6px 14px; background: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
-            🔇 Pusti muziku
+        <button id="musicBtn1" style="margin-top: 8px; margin-right: 8px; padding: 6px 14px; background: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+            🔇 Pesma 1
+        </button>
+        <button id="musicBtn2" style="margin-top: 8px; padding: 6px 14px; background: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+            🔇 Pesma 2
         </button>
     </div>
     <div id="container"></div>
-    <audio id="bgMusic" loop preload="auto">
+    <audio id="bgMusic1" loop preload="auto">
         <source src="WinterTown.ogg" type="audio/ogg">
         <source src="WinterTown.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bgMusic2" loop preload="auto">
+        <source src="WinterTown2.ogg" type="audio/ogg">
+        <source src="WinterTown2.mp3" type="audio/mpeg">
     </audio>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         const container = document.getElementById('container');
-        const musicBtn = document.getElementById('musicBtn');
-        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn1 = document.getElementById('musicBtn1');
+        const musicBtn2 = document.getElementById('musicBtn2');
+        const bgMusic1 = document.getElementById('bgMusic1');
+        const bgMusic2 = document.getElementById('bgMusic2');
         let rotation = { x: 0, y: 0 };
         let zoom = 20;
         let lookAtPoint = { x: 0, y: 5, z: 0 };
-        let musicPlaying = false;
         let audioUnlocked = false;
 
         // Try to unlock audio on first user interaction
         function unlockAudio() {
             if (!audioUnlocked) {
-                bgMusic.play().then(() => {
-                    bgMusic.pause();
-                    bgMusic.currentTime = 0;
+                bgMusic1.play().then(() => {
+                    bgMusic1.pause();
+                    bgMusic1.currentTime = 0;
                     audioUnlocked = true;
                     console.log('Audio unlocked!');
                 }).catch(err => {
@@ -84,26 +92,51 @@
             }
         }
 
-        // Simple music toggle
-        musicBtn.addEventListener('click', function() {
-            console.log('Dugme kliknuto!');
+        // Stop all music
+        function stopAllMusic() {
+            bgMusic1.pause();
+            bgMusic2.pause();
+            musicBtn1.textContent = '🔇 Pesma 1';
+            musicBtn2.textContent = '🔇 Pesma 2';
+        }
+
+        // Music 1 toggle
+        musicBtn1.addEventListener('click', function() {
+            console.log('Pesma 1 kliknuta!');
             unlockAudio();
             
-            if (bgMusic.paused) {
-                console.log('Pokušavam da pustim muziku...');
-                bgMusic.play().then(function() {
-                    console.log('Muzika ide!');
-                    musicPlaying = true;
-                    musicBtn.textContent = '🔊 Zaustavi muziku';
+            if (bgMusic1.paused) {
+                stopAllMusic();
+                bgMusic1.play().then(function() {
+                    console.log('Pesma 1 ide!');
+                    musicBtn1.textContent = '🔊 Pesma 1';
                 }).catch(function(err) {
                     console.log('Greška:', err);
                     alert('Molim te klikni ponovo na dugme!');
                 });
             } else {
-                console.log('Zaustavljam muziku...');
-                bgMusic.pause();
-                musicPlaying = false;
-                musicBtn.textContent = '🔇 Pusti muziku';
+                bgMusic1.pause();
+                musicBtn1.textContent = '🔇 Pesma 1';
+            }
+        });
+
+        // Music 2 toggle
+        musicBtn2.addEventListener('click', function() {
+            console.log('Pesma 2 kliknuta!');
+            unlockAudio();
+            
+            if (bgMusic2.paused) {
+                stopAllMusic();
+                bgMusic2.play().then(function() {
+                    console.log('Pesma 2 ide!');
+                    musicBtn2.textContent = '🔊 Pesma 2';
+                }).catch(function(err) {
+                    console.log('Greška:', err);
+                    alert('Molim te klikni ponovo na dugme!');
+                });
+            } else {
+                bgMusic2.pause();
+                musicBtn2.textContent = '🔇 Pesma 2';
             }
         });
 
