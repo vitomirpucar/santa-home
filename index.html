@@ -904,7 +904,7 @@
         const snowGeom = new THREE.SphereGeometry(0.1, 6, 6); // Less segments = faster
         const snowMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
         
-        for (let i = 0; i < 600; i++) {
+        for (let i = 0; i < 400; i++) {
             const snowflake = new THREE.Mesh(snowGeom, snowMat);
             snowflake.position.set(
                 Math.random() * 60 - 30,
@@ -951,7 +951,7 @@
                 scene.add(this.centerLight);
                 
                 // Create particles
-                for (let i = 0; i < 100; i++) {
+                for (let i = 0; i < 20; i++) {
                     const particleGeom = new THREE.SphereGeometry(0.2, 8, 8);
                     const particleMat = new THREE.MeshStandardMaterial({ 
                         color: color,
@@ -1199,7 +1199,6 @@
             
             // Quick tap launches firework
             if (touchDuration < 200 && e.changedTouches.length === 1) {
-				if (fireworks.length === 0) {  // <--- SAMO JEDAN VATROMET
                 launchFirework();
             }
         });
