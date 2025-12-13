@@ -930,7 +930,7 @@
         }
         let smokeTimer=0;
         
-        // Fireworks system
+ // Fireworks system
         const fireworks = [];
         
         class Firework {
@@ -941,6 +941,7 @@
                 const colors = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF, 0x00FFFF, 0xFFFFFF];
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 
+                // Original starting position from the previous code block you provided
                 const startX = Math.random() * 40 - 20;
                 const startY = 15 + Math.random() * 10;
                 const startZ = Math.random() * 40 - 20;
@@ -1019,7 +1020,12 @@
         }
         
         function launchFirework() {
-            fireworks.push(new Firework());
+            // *** JEDINA POTREBNA LOGIKA ZA OGRANIČENJE ***
+            if (fireworks.length === 0) {
+                fireworks.push(new Firework());
+            } else {
+                console.log("Vatromet je već aktivan, sačekajte da se završi.");
+            }
         }
         
         // Spacebar to launch firework
@@ -1089,6 +1095,7 @@
                     fireworks.splice(index, 1);
                 }
             });
+
 
             snowflakes.forEach(flake => {
                 flake.position.y -= 0.05;
