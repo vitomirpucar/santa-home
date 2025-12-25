@@ -8,7 +8,7 @@ window.addEventListener || window.attachEvent){
 //Configure here.
 
 var num = 60;   //Number of flakes
-var timer = 60; //setTimeout speed. Varies on different comps
+var timer = 30; //setTimeout speed. Varies on different comps
 
 //End.
 
@@ -149,3 +149,4 @@ else if (window.attachEvent){
 })();
 
 }//End.
+
