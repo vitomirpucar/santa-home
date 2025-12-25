@@ -7,8 +7,8 @@ window.addEventListener || window.attachEvent){
 
 //Configure here.
 
-var num = 30;   //Number of flakes
-var timer = 30; //setTimeout speed. Varies on different comps
+var num = 60;   //Number of flakes
+var timer = 60; //setTimeout speed. Varies on different comps
 
 //End.
 
@@ -31,7 +31,7 @@ typeof d.documentElement.style.MozOpacity == "string")
 num = 12;
 
 for (i = 0; i < num; i++){
-sfs[i] = Math.round(1 + Math.random() * 1);
+sfs[i] = Math.round(1 + Math.random() * 5);
 
 document.write('<div id="flake'+(idx+i)+'" style="position:absolute;top:0px;left:0px;width:'
 +sfs[i]+'px;height:'+sfs[i]+'px;background-color:#ffffff;font-size:'+sfs[i]+'px"><\/div>');
@@ -147,4 +147,5 @@ else if (window.attachEvent){
 } 
 
 })();
+
 }//End.
